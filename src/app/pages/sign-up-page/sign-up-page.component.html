@@ -1,0 +1,139 @@
+<main class="vh-100">
+  <div class="bg-white signInForm py-3 position-absolute start-50 rounded-1">
+    <div class="d-flex">
+      <a
+        routerLink="/log-in"
+        class="text-black border-bottom border-1 border-dark pb-3"
+      >
+        Sign In
+      </a>
+      <a
+        routerLink="/sign-up"
+        class="text-black border-bottom border-2 border-dark fw-bold"
+        >Sign Up</a
+      >
+    </div>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <p class="inputLabel">Name</p>
+      <div class="position-relative">
+        <input
+          type="text"
+          class="rounded-1 form-control border-0"
+          formControlName="name"
+        />
+        <i
+          class="bi inputIcon"
+          [ngClass]="{
+            'bi-exclamation-circle':
+              signUpForm.get('name')?.dirty && signUpForm.get('name')?.invalid,
+            'bi-check2': signUpForm.get('name')?.valid
+          }"
+        ></i>
+      </div>
+      <p class="inputLabel">Email</p>
+      <div class="position-relative">
+        <input
+          type="email"
+          class="rounded-1 form-control border-0"
+          formControlName="email"
+        />
+        <i
+          class="bi inputIcon"
+          [ngClass]="{
+            'bi-exclamation-circle':
+              signUpForm.get('email')?.dirty &&
+              signUpForm.get('email')?.invalid,
+            'bi-check2': signUpForm.get('email')?.valid
+          }"
+        ></i>
+      </div>
+
+      <p class="inputLabel">Password</p>
+      <div class="position-relative">
+        <input
+          [(ngModel)]="password"
+          [type]="fieldTextTypePassword ? 'text' : 'password'"
+          class="rounded-1 form-control border-0"
+          formControlName="password"
+        />
+        <div class="inputIcon d-flex gap-2 align-items-center">
+          <i
+            class="bi"
+            [ngClass]="{
+              'bi-eye-slash': !fieldTextTypePassword,
+              'bi-eye': fieldTextTypePassword
+            }"
+            (click)="toggleFieldTextType('password')"
+          ></i>
+          <i
+            class="bi"
+            [ngClass]="{
+              'bi-exclamation-circle':
+                signUpForm.get('password')?.dirty &&
+                signUpForm.get('password')?.invalid,
+              'bi-check2': signUpForm.get('password')?.valid
+            }"
+          ></i>
+        </div>
+      </div>
+      <span
+        class="text-danger"
+        *ngIf="
+          signUpForm.get('password')?.dirty &&
+          signUpForm.get('password')?.invalid
+        "
+        >Password must be minimum 6 characters</span
+      >
+
+      <p class="inputLabel">Confirm Password</p>
+      <div class="position-relative">
+        <input
+          [(ngModel)]="confirmPassword"
+          [type]="fieldTextTypeConfirmPassword ? 'text' : 'password'"
+          class="rounded-1 form-control border-0"
+          formControlName="confirmPassword"
+        />
+        <div class="inputIcon d-flex gap-2 align-items-center">
+          <i
+            class="bi"
+            [ngClass]="{
+              'bi-eye-slash': !fieldTextTypeConfirmPassword,
+              'bi-eye': fieldTextTypeConfirmPassword
+            }"
+            (click)="toggleFieldTextType('confirmPassword')"
+          ></i>
+          <i
+            class="bi"
+            [ngClass]="{
+              'bi-exclamation-circle':
+                signUpForm.get('confirmPassword')?.dirty &&
+                confirmPassword !== password,
+              'bi-check2':
+                signUpForm.get('confirmPassword')?.dirty &&
+                confirmPassword === password
+            }"
+          ></i>
+        </div>
+      </div>
+      <span
+        class="text-danger"
+        *ngIf="
+          signUpForm.get('confirmPassword')?.dirty &&
+          confirmPassword !== password
+        "
+        >Passwords don't match</span
+      >
+
+      <button
+        class="fw-bold signInBtn rounded-1"
+        type="submit"
+        [disabled]="!signUpForm.valid || confirmPassword !== password"
+      >
+        Sign Up
+      </button>
+    </form>
+    <ng-container *ngIf="error$ | async as error"
+      ><span class="text-danger">{{ error.error.message }}</span></ng-container
+    >
+  </div>
+</main>

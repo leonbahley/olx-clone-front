@@ -1,0 +1,38 @@
+<app-header></app-header>
+<main>
+  <ng-container *ngIf="selectedProduct$ | async as product">
+    <ngbd-carousel-basic [images]="product.images"></ngbd-carousel-basic>
+    <div class="d-inline-flex flex-column gap-3 bg-white rounded-1 mt-4 p-4">
+      <div class="d-flex justify-content-between">
+        <h1 class="display-6">{{ product.title }}</h1>
+        <div
+          class="btnWrapper"
+          placement="top"
+          [ngbTooltip]="!email ? 'Log in to add product' : ''"
+        >
+          <button
+            (click)="manageFavorites(product)"
+            [disabled]="!email"
+            class="btn"
+          >
+            <i
+              class="bi"
+              [ngClass]="{
+                'bi-heart': !likedProductsIds.includes(product.id) || !email,
+                'bi-heart-fill text-danger':
+                  likedProductsIds.includes(product.id) && email
+              }"
+            ></i>
+          </button>
+        </div>
+      </div>
+
+      <p class="h1">{{ product.price | currency }}</p>
+      <span class="border border-dark rounded-1 p-2">{{
+        product.category
+      }}</span>
+      <h4>Description</h4>
+      <p>{{ product.description }}</p>
+    </div>
+  </ng-container>
+</main>

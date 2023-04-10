@@ -1,0 +1,13 @@
+span {
+  width: fit-content;
+}
+i {
+  font-size: 2rem;
+}
+button {
+  border: none !important;
+}
+.btnWrapper {
+  top: 5px;
+  right: 5px;
+}

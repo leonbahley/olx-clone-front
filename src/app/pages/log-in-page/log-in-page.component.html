@@ -1,0 +1,83 @@
+<main class="vh-100">
+  <div class="bg-white signInForm py-3 position-absolute start-50 rounded-1">
+    <div class="d-flex">
+      <a
+        routerLink="/log-in"
+        class="text-black border-bottom border-2 border-dark fw-bold pb-3"
+      >
+        Sign In
+      </a>
+      <a
+        routerLink="/sign-up"
+        class="text-black border-bottom border-1 border-dark"
+        >Sign Up</a
+      >
+    </div>
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+      <p class="inputLabel">Email</p>
+      <div class="position-relative">
+        <input
+          type="email"
+          class="rounded-1 form-control border-0"
+          formControlName="email"
+        />
+        <i
+          class="bi inputIcon"
+          [ngClass]="{
+            'bi-exclamation-circle':
+              signInForm.get('email')?.dirty &&
+              signInForm.get('email')?.invalid,
+            'bi-check2': signInForm.get('email')?.valid
+          }"
+        ></i>
+      </div>
+
+      <p class="inputLabel">Password</p>
+      <div class="position-relative">
+        <input
+          [type]="fieldTextType ? 'text' : 'password'"
+          class="rounded-1 form-control border-0"
+          formControlName="password"
+        />
+        <div class="inputIcon d-flex gap-2 align-items-center">
+          <i
+            class="bi"
+            [ngClass]="{
+              'bi-eye-slash': !fieldTextType,
+              'bi-eye': fieldTextType
+            }"
+            (click)="toggleFieldTextType()"
+          ></i>
+          <i
+            class="bi"
+            [ngClass]="{
+              'bi-exclamation-circle':
+                signInForm.get('password')?.dirty &&
+                signInForm.get('password')?.invalid,
+              'bi-check2': signInForm.get('password')?.valid
+            }"
+          ></i>
+        </div>
+      </div>
+      <span
+        class="text-danger"
+        *ngIf="
+          signInForm.get('password')?.dirty &&
+          signInForm.get('password')?.invalid
+        "
+        >Password must be minimum 6 characters</span
+      >
+
+      <button
+        class="fw-bold signInBtn rounded-1"
+        type="submit"
+        [disabled]="!signInForm.valid"
+      >
+        Sign In
+      </button>
+    </form>
+    <ng-container *ngIf="error$ | async as error"
+      ><span class="text-danger">{{ error.error.message }}</span></ng-container
+    >
+  </div>
+</main>

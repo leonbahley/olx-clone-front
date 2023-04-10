@@ -1,0 +1,22 @@
+<section class="pt-5 pb-5">
+  <div class="input-group w-50 mx-auto">
+    <input
+      #search
+      type="text"
+      class="form-control rounded-0 border-0"
+      placeholder="13 333 123 announcements closeby"
+      aria-label="13 333 123 announcements closeby"
+      aria-describedby="button-addon2"
+    />
+    <button
+      class="btn btn-outline-secondary rounded-0 border-0 bg-white text-black d-flex align-items-center"
+      type="button"
+      id="button-addon2"
+      (click)="searchItems()"
+    >
+      Search
+
+      <i class="bi bi-search ms-2"></i>
+    </button>
+  </div>
+</section>

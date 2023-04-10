@@ -1,0 +1,44 @@
+<header>
+  <nav class="navbar bg-dark">
+    <div class="container-fluid w-50 justify-content-start">
+      <a class="navbar-brand me-auto" routerLink="/"
+        ><img
+          width="60px"
+          src="https://devtechnosys.com/images/2021-new/classified-app-development/clone-5.png"
+          alt="logo"
+      /></a>
+      <a
+        [routerLink]="(email$ | async) ? ['/liked'] : ['log-in']"
+        class="text-white me-5 hoverItem"
+        placement="bottom"
+        ><i class="bi bi-heart" style="font-size: 22px"></i
+      ></a>
+      <ng-container *ngIf="!(email$ | async); else logged_in">
+        <a
+          routerLink="/log-in"
+          class="text-white medium d-flex gap-2 align-items-center hoverItem"
+          ><i class="bi bi-person" style="font-size: 24px"></i> Your profile</a
+        ></ng-container
+      >
+    </div>
+  </nav>
+</header>
+<ng-template #logged_in>
+  <div ngbDropdown class="d-inline-block">
+    <button
+      type="button"
+      class="dropDown btn btn-outline-primary d-flex align-items-center text-white border-0"
+      id="dropdownBasic1"
+      ngbDropdownToggle
+    >
+      <div class="medium d-flex gap-2 align-items-center me-1">
+        <i class="bi bi-person" style="font-size: 2rem"></i>
+        <span>Your profile</span>
+      </div>
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <p class="fw-bold">{{ email$ | async }}</p>
+      <button ngbDropdownItem (click)="logOut()">Log out</button>
+    </div>
+  </div>
+</ng-template>

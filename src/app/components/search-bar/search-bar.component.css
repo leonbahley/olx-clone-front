@@ -1,0 +1,21 @@
+.form-control:focus {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.form-control::placeholder {
+  color: #000 !important;
+}
+button {
+  margin-left: 2px !important;
+}
+.input-group {
+  height: 72px;
+}
+button:hover {
+  background-color: rgb(33, 37, 41) !important;
+  color: #fff !important;
+}
+i {
+  font-size: 25px;
+}

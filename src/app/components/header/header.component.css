@@ -1,0 +1,10 @@
+p {
+  padding-left: 1rem;
+}
+.hoverItem:hover {
+  opacity: 0.5;
+}
+.dropDown:hover {
+  background-color: transparent;
+  opacity: 0.5;
+}

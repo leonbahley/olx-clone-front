@@ -1,0 +1,18 @@
+<section class="bg-white pb-5 pt-5">
+  <h2 class="text-center mb-5">Categories</h2>
+
+  <ul class="container d-flex gap-2 justify-content-center">
+    <li *ngFor="let item of categories">
+      <a
+        routerLink="/categories/{{ item.category }}"
+        class="btn d-flex flex-column gap-3 align-items-center"
+      >
+        <div class="overflow-hidden">
+          <img src="{{ item.image }}" alt="{{ item.name }}" />
+        </div>
+
+        <p>{{ item.name }}</p>
+      </a>
+    </li>
+  </ul>
+</section>

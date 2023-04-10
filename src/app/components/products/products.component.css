@@ -1,0 +1,13 @@
+li {
+  width: 246px;
+  height: 320px;
+}
+.btn:hover {
+  opacity: 1 !important;
+}
+ul {
+  max-width: 1080px;
+}
+button {
+  border: none !important;
+}
