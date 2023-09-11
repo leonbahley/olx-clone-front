@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { IProduct } from '../interface/product.interface';
 import { ILikedProduct } from '../interface/likedProduct.interface';
 
-const BASE_URL = 'https://olx-clone-back-production.up.railway.app';
+const BASE_URL = 'https://olx2.onrender.com';
 
 const getToken = () => {
   let token;
