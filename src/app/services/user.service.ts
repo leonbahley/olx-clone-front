@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IAuth } from '../interface/auth.interface';
 
-const BASE_URL = 'https://olx-clone-back-production.up.railway.app';
+const BASE_URL = 'https://olx2.onrender.com';
 
 @Injectable({
   providedIn: 'root',
